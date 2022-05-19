@@ -3,9 +3,12 @@
     "",
     "\\public",
     "\\src",
+    "\\src\\auth",
     "\\src\\components",
+    "\\src\\components\\partials",
+    "\\src\\router",
     "\\src\\views"
   ],
-  "SelectedNode": "\\src\\router\\index.js",
+  "SelectedNode": "\\src\\views\\HomeView.vue",
   "PreviewInSolutionExplorer": false
 }

@@ -27,29 +27,55 @@
             <br />
             <b-button variant="danger" @click="search">Search</b-button>
         </div>
+       <!-- {{list}}-->
+    <hr /><br />
+        <SearchResults/>
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
     import { BootstrapVue } from 'bootstrap-vue';
+    import SearchResults from '../components/partials/SearchResults.vue'
+    import axios from 'axios'
+    import VueAxios from 'vue-axios'
 
-    Vue.use(BootstrapVue)
+    Vue.use(BootstrapVue, VueAxios, axios)
 
     export default {
         name: 'SearchView',
-        components: {},
+        components: {
+            SearchResults,
+        },
         data() {
             return {
                 newsDate: '',
                 language: '',
                 keyword: '',
-                languages: [{ text: 'Choose a language', value: null}, 'English']
+                languages: [{ text: 'Choose a language', value: null }, 'English'],
+                list: null
             }
         },
         methods: {
             search() {
-            alert(this.keyword + ', ' + this.newsDate + ', ' + this.language)
+                /* alert(this.keyword + ', ' + this.newsDate + ', ' + this.language)*/
+                if (this.newsDate == '') {
+                    axios
+                        .get('https://localhost:7026/News/Search?search=' + this.keyword)
+                        .then(response => {
+                            //console.warn(response.data)
+                            this.list = response.data.bpi
+                        })
+                }
+                else {
+                    axios
+                        .get('https://localhost:7026/News/SearchDate?search=' + this.keyword + '&date=' + this.newsDate)
+                        .then(response => {
+                            //console.warn(response.data)
+                            this.list = response.data.bpi
+                        })
+                }
+                
             }
         }
     };
