@@ -1,4 +1,4 @@
-<template>
+npm <template>
     <div id="app">
         <Nav />
         <div class="component-view">

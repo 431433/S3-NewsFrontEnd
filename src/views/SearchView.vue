@@ -27,16 +27,15 @@
             <br />
             <b-button variant="danger" @click="search">Search</b-button>
         </div>
-       <!-- {{list}}-->
+        {{list}}
     <hr /><br />
-        <SearchResults/>
+        <!--<SearchResults/>-->
     </div>
 </template>
 
 <script>
     import Vue from 'vue';
     import { BootstrapVue } from 'bootstrap-vue';
-    import SearchResults from '../components/partials/SearchResults.vue'
     import axios from 'axios'
     import VueAxios from 'vue-axios'
 
@@ -45,7 +44,6 @@
     export default {
         name: 'SearchView',
         components: {
-            SearchResults,
         },
         data() {
             return {
@@ -53,7 +51,7 @@
                 language: '',
                 keyword: '',
                 languages: [{ text: 'Choose a language', value: null }, 'English'],
-                list: null
+                list: undefined
             }
         },
         methods: {
@@ -64,7 +62,7 @@
                         .get('https://localhost:7026/News/Search?search=' + this.keyword)
                         .then(response => {
                             //console.warn(response.data)
-                            this.list = response.data.bpi
+                            this.list = response.data
                         })
                 }
                 else {
@@ -72,7 +70,7 @@
                         .get('https://localhost:7026/News/SearchDate?search=' + this.keyword + '&date=' + this.newsDate)
                         .then(response => {
                             //console.warn(response.data)
-                            this.list = response.data.bpi
+                            this.list = response.data
                         })
                 }
                 
