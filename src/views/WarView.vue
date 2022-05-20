@@ -1,105 +1,20 @@
 <template>
     <div>
         <h1>All the war articles</h1>
-        <hr />
-        <b-button @click="mainArticle">test</b-button>
-            <br />
+        <hr /><br />
             <div>
                 <b-list-group class="article-list">
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
+                    <b-list-group-item  v-for="articles in allArticles" :key="articles.amount" :href="articles.url" class="flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between" style="margin-bottom:-15px;">
+                            <h5 class="mb-1">{{articles.title}}</h5>
                         </div>
+                        <hr style="max-width:10%;"/>
 
                         <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
+                            {{articles.description}}
                         </p>
 
-                        <small>author goes here</small>
-                    </b-list-group-item>
-
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
-                    </b-list-group-item>
-
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
-                    </b-list-group-item>
-
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
-                    </b-list-group-item>
-
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
-                    </b-list-group-item>
-
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
+                        <small>{{articles.sourceName}}</small>
                     </b-list-group-item>
                 </b-list-group>
                 <div class="main-view" v-for="article in mainArticle" :key="article.amount">
@@ -133,13 +48,19 @@
             }
         },
         mounted() {
-                /* alert(this.keyword + ', ' + this.newsDate + ', ' + this.language)*/
                 axios
                     .get('https://localhost:7026/Warnews/GetWarMainArticle')
                     .then(response => {
                         this.mainArticle = response.data
                         console.warn(this.mainArticle)
+                    }),
+                axios
+                    .get('https://localhost:7026/Warnews/GetWarArticles')
+                    .then(responseWar => {
+                        this.allArticles = responseWar.data
+                        console.warn(this.allArticles)
                     })
+                
         }
     }
 </script>
@@ -149,6 +70,8 @@
         max-width: 20%;
         float: left;
         margin-right: 60px;
+        max-height:700px;
+        overflow: scroll;
     }
 
     .main-view{
