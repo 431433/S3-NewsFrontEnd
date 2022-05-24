@@ -3,11 +3,11 @@
     "",
     "\\public",
     "\\src",
+    "\\src\\auth",
     "\\src\\components",
     "\\src\\components\\partials",
     "\\src\\router",
     "\\src\\views"
   ],
-  "SelectedNode": "\\src\\components\\partials\\SearchResults.vue",
   "PreviewInSolutionExplorer": false
 }

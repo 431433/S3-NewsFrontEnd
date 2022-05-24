@@ -5,67 +5,36 @@
 
         <div>
             <b-card no-body class="overflow-hidden top-card center-cards">
-                <b-row no-gutters>
+                <b-row no-gutters v-for="article in mainArticle" :key="article.amount">
                     <b-col md="6">
-                        <b-card-img src="https://e0.365dm.com/22/05/768x432/skysports-city-ground-forest_5774993.jpg?20220518000000" alt="" class="rounded-0"></b-card-img>
+                        <b-card-img :src="article.image" alt="" class="rounded-0"></b-card-img>
                     </b-col>
                     <b-col md="6">
-                        <b-card-body title="Billy Sharp allegedly attacked by fan during Nottingham Forest-Sheffield United pitch invasion | Police arrest man">
+                        <b-card-body :title="article.title">
                             <b-card-text>
-                                Nottingham Forest's penalty shootout win over Sheffield United marred as Billy Sharp appeared to be attacked
-                                during pitch invasion at City Ground; Forest play Huddersfield in the Championship play-off final on May 29
+                                {{article.description}}
                             </b-card-text>
                             <br />
-                            <b-button href="https://www.skysports.com/football/news/11095/12615619/billy-sharp-attacked-by-fan-during-nottingham-forest-sheffield-united-pitch-invasion-paul-heckingbottom-its-out-of-order" variant="danger">Read more</b-button>
+                            <b-button href="article.url" variant="danger">Read more</b-button>
                         </b-card-body>
                     </b-col>
                 </b-row>
             </b-card>
 
             <b-card-group>
-                <b-card title="Cambuur-keeper Bos (25) moet carriere beeindigen wegens hartproblemen"
-                        img-src="https://media.nu.nl/m/8mexpbla75rp_wd1280.jpg/cambuur-keeper-bos-25-moet-carriere-beeindigen-wegens-hartproblemen.jpg"
+                <b-card :title="article.title"
+                        :img-src="article.image"
                         img-alt="Image"
                         img-top
                         tag="article"
                         class="mb-2 cards"
-                        align="center">
+                        align="center"
+                         v-for="article in topArticles" :key="article.amount">
                     <b-card-text>
-                        SC Cambuur-keeper Pieter Bos heeft woensdag een punt achter zijn loopbaan moeten zetten. De 25-jarige Fries kampt met hartproblemen, 
-                        waardoor een topsportcarriere niet langer mogelijk is.
+                        {{article.description}}
                     </b-card-text>
 
-                    <b-button href="https://www.nu.nl/voetbal/6201458/cambuur-keeper-bos-25-moet-carriere-beeindigen-wegens-hartproblemen.html" variant="danger">Read more</b-button>
-                </b-card>
-
-                <b-card title="Feyenoord neemt revaliderende keeper Bijlow mee op trainingskamp voor finale"
-                        img-src="https://media.nu.nl/m/fhzxen5a8ejx_xwd1280.jpg/feyenoord-neemt-revaliderende-keeper-bijlow-mee-op-trainingskamp-voor-finale.jpg"
-                        img-alt="Image"
-                        img-top
-                        tag="article"
-                        class="mb-2 cards"
-                        align="center">
-                    <b-card-text>
-                        Eerste keeper Justin Bijlow, die door een blessure al ruim twee maanden aan de kant staat, is een van de 26 Feyenoord-spelers 
-                        die woensdagmiddag naar Portugal reizen voor een trainingskamp in de aanloop naar de Conference League-finale tegen AS Roma.
-                    </b-card-text>
-
-                    <b-button href="https://www.nu.nl/voetbal/6201476/feyenoord-neemt-revaliderende-keeper-bijlow-mee-op-trainingskamp-voor-finale.html" variant="danger">Read more</b-button>
-                </b-card>
-
-                <b-card title="Vitesse-spits Openda kan in duel met Oranje debuteren voor Belgisch elftal"
-                        img-src="https://media.nu.nl/m/eg3xd86a6e96_wd1280.jpg/vitesse-spits-openda-kan-in-duel-met-oranje-debuteren-voor-belgisch-elftal.jpg"
-                        img-alt="Image"
-                        img-top
-                        tag="article"
-                        class="mb-2 cards"
-                        align="center">
-                    <b-card-text>
-                        Lois Openda is woensdag voor het eerst opgeroepen voor het Belgisch elftal. De 22-jarige spits van Vitesse kan
-                        daardoor over twee weken in het Nations League-duel met Oranje zijn debuut maken voor de 'Rode Duivels'.
-                    </b-card-text>
-
-                    <b-button href="https://www.nu.nl/voetbal/6201467/vitesse-spits-openda-kan-in-duel-met-oranje-debuteren-voor-belgisch-elftal.html" variant="danger">Read more</b-button>
+                    <b-button href="article.url" variant="danger">Read more</b-button>
                 </b-card>
             </b-card-group>
         </div>
@@ -73,21 +42,72 @@
         <div>
             <h3 style="margin-left:50px">The latest articles</h3>
             <hr />
-            <p>?</p>
+            <div>
+                <b-card-group columns>
+
+                    <b-card v-for="article in allArticles" :key="article.amount"
+                            :title="article.title"
+                            :img-src="article.image"
+                            img-alt="Image"
+                            img-top
+                            tag="article"
+                            class="mb-2 allCards"
+                            align="center">
+                        <b-card-text>
+                            {{article.description}}
+                        </b-card-text>
+                        <b-button href="article.url" variant="danger">Read more</b-button>
+                    </b-card>
+                </b-card-group>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    import axios from 'axios'
+    import VueAxios from 'vue-axios'
+    import Vue from 'vue'
+
+    Vue.use(VueAxios, axios)
+
     export default {
         name: 'SportsView',
         components: {},
+        data() {
+            return {
+                mainArticle: null,
+                topArticles: null,
+                allArticles: null
+            }
+        },
+        mounted() {
+            axios
+                .get('https://localhost:7026/Sports/GetMainSportArticle')
+                .then(response => {
+                    this.mainArticle = response.data
+                    console.warn(this.mainArticle)
+                }),
+                axios
+                .get('https://localhost:7026/Sports/GetTopSportArticles')
+                    .then(responseTop => {
+                        this.topArticles = responseTop.data
+                        console.warn(this.topArticles)
+                    }),
+                axios
+                .get('https://localhost:7026/Sports/GetSportArticles')
+                .then(responseAll => {
+                    this.allArticles = responseAll.data
+                    console.warn(this.allArticles)
+                })
+
+        }
     };
 </script>
 
 <style>
     .top-card{
-        max-width: 60%;
+        max-width: 70%;
     }
 
     .center-cards{
@@ -99,5 +119,9 @@
         max-width: 18rem;
         margin: 40px;
         margin-left: 440px
+    }
+
+    .allCards{
+        max-width: 18rem;
     }
 </style>
