@@ -27,9 +27,30 @@
             <br />
             <b-button variant="danger" @click="search">Search</b-button>
         </div>
-        {{list}}
-    <hr /><br />
-        <!--<SearchResults/>-->
+        <hr /><br />
+        <star-rating :max-rating="10" :star-size="20"></star-rating>
+
+        <div>
+            <div>
+                <b-card-group>
+                    <b-card-group>
+                        <b-card v-for="article in list" :key="article.amount"
+                                :title="article.title"
+                                :img-src="article.image"
+                                img-alt="Image"
+                                img-top
+                                tag="article"
+                                class="mb-2 allCards"
+                                align="center">
+                            <b-card-text>
+                                {{article.description}}
+                            </b-card-text>
+                            <b-button href="article.url" variant="danger">Read more</b-button>
+                        </b-card>
+                    </b-card-group>
+                </b-card-group>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -89,5 +110,15 @@
 
     .search-item{
         max-width: 100%;
+    }
+
+    .cards {
+        max-width: 18rem;
+        margin: 40px;
+        margin-left: 440px
+    }
+
+    .allCards {
+        max-width: 18rem;
     }
 </style>

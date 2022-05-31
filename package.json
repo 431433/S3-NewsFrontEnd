@@ -20,7 +20,8 @@
     "vue-axios": "^3.4.1",
     "vue-chartjs": "^4.1.0",
     "vue-router": "^3.5.1",
-    "vue-scroll-snap": "^0.1.11"
+    "vue-scroll-snap": "^0.1.11",
+    "vue-star-rating": "^1.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

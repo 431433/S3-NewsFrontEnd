@@ -41,5 +41,13 @@
 </script>
 
 <style>
+    .cards {
+        max-width: 18rem;
+        margin: 40px;
+        margin-left: 440px
+    }
 
+    .allCards {
+        max-width: 18rem;
+    }
 </style>

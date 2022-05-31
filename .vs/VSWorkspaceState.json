@@ -3,7 +3,6 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\auth",
     "\\src\\components",
     "\\src\\components\\partials",
     "\\src\\router",
