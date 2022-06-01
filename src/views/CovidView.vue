@@ -5,108 +5,21 @@
         <div>
             <div>
                 <b-list-group class="article-list">
-                    <h3>Latest articles</h3>
+                    <!--<h3>Latest articles</h3>
                     <hr />
-                    <b-list-group-item href="#" class="flex-column align-items-start">
+                    <b-list-group-item v-for="article in latestArticles" :href="article.url" class="flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
+                            <h5 class="mb-1">article.title</h5>
                         </div>
 
                         <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
+                            {{article.description}}
                         </p>
 
-                        <small>author goes here</small>
-                    </b-list-group-item>
-
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
-                    </b-list-group-item>
-
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
-                    </b-list-group-item>
-                    <br />
-
-                    <h3 style="margin-top:30px;">popular articles</h3>
-                    <hr />
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
-                    </b-list-group-item>
-
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
-                    </b-list-group-item>
-
-                    <b-list-group-item href="#" class="flex-column align-items-start">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">Article title goes here</h5>
-                            <small>release date</small>
-                        </div>
-
-                        <p class="mb-1">
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                            description goes here.
-                        </p>
-
-                        <small>author goes here</small>
-                    </b-list-group-item>
+                        <small>{{article.sourceName}}</small>
+                    </b-list-group-item>-->
                 </b-list-group>
-            </div>
+</div>
         </div>
 
         <div class="margin-mainView">

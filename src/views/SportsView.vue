@@ -83,19 +83,19 @@
         },
         mounted() {
             axios
-                .get('https://localhost:7026/Sports/GetMainSportArticle')
+                .get('https://newsbackend.azurewebsites.net/Sports/GetMainSportArticle')
                 .then(response => {
                     this.mainArticle = response.data
                     console.warn(this.mainArticle)
                 }),
                 axios
-                .get('https://localhost:7026/Sports/GetTopSportArticles')
+                .get('https://newsbackend.azurewebsites.net/Sports/GetTopSportArticles')
                     .then(responseTop => {
                         this.topArticles = responseTop.data
                         console.warn(this.topArticles)
                     }),
                 axios
-                .get('https://localhost:7026/Sports/GetSportArticles')
+                .get('https://newsbackend.azurewebsites.net/Sports/GetSportArticles')
                 .then(responseAll => {
                     this.allArticles = responseAll.data
                     console.warn(this.allArticles)

@@ -80,7 +80,7 @@
                 /* alert(this.keyword + ', ' + this.newsDate + ', ' + this.language)*/
                 if (this.newsDate == '') {
                     axios
-                        .get('https://localhost:7026/News/Search?search=' + this.keyword)
+                        .get('https://newsbackend.azurewebsites.net/News/Search?search=' + this.keyword)
                         .then(response => {
                             //console.warn(response.data)
                             this.list = response.data
@@ -88,7 +88,7 @@
                 }
                 else {
                     axios
-                        .get('https://localhost:7026/News/SearchDate?search=' + this.keyword + '&date=' + this.newsDate)
+                        .get('https://newsbackend.azurewebsites.net/News/SearchDate?search=' + this.keyword + '&date=' + this.newsDate)
                         .then(response => {
                             //console.warn(response.data)
                             this.list = response.data

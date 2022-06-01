@@ -36,9 +36,14 @@ const routes = [
         component: () => import('../views/CovidView.vue')
     },
     {
-    path: '/search',
-    name: 'search',
-    component: () => import('../views/SearchView.vue')
+        path: '/search',
+        name: 'search',
+        component: () => import('../views/SearchView.vue')
+    },
+    {
+        path: '/rate/:article',
+        name: 'rate',
+        component: () => import('../views/RatingView.vue')
     }
 ]
 
