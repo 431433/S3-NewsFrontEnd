@@ -45,7 +45,7 @@
                             <b-card-text>
                                 {{article.description}}
                             </b-card-text>
-                            <b-button href="article.url" variant="danger">Read more</b-button>
+                            <b-button :href="article.url" variant="danger">Read more</b-button>
                         </b-card>
                     </b-card-group>
                 </b-card-group>
