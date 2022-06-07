@@ -28,8 +28,8 @@
                 </p>
                 <br />
                 <b-button :href="article.url" variant="danger">Read more</b-button>
-                <b-button variant="primary" class="review" ><router-link style="color:white;" :to="'/rate/' + `${article.title}`"> Review</router-link></b-button>
-
+                <b-button variant="primary" class="review"><router-link style="color:white;" :to="'/rate/' + `${article.title}`"> Review</router-link></b-button>
+                <router-link :to="'/reviews/' + `${article.title}`">Reviews</router-link>
             </div>
         </div>
     </div>

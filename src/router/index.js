@@ -44,6 +44,11 @@ const routes = [
         path: '/rate/:article',
         name: 'rate',
         component: () => import('../views/RatingView.vue')
+    },
+    {
+        path: '/reviews/:title',
+        name: 'reviews',
+        component: () => import('../components/partials/CommentsView.vue')
     }
 ]
 
