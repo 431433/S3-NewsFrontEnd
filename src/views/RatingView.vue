@@ -49,9 +49,15 @@
                 event.preventDefault()
                 console.warn(this.form)
                 alert("Thanks for your feedback!")
-                axios
-                    .get('https://localhost:7026/Review/Rate?json=' + JSON.stringify(this.form))
-
+                axios({
+                    method: 'post',
+                    url: 'https://newsbackend.azurewebsites.net/Review/Rate',
+                    data: {
+                        "comment": this.form.comment,
+                        "title": this.form.articleId,
+                        "grade": this.form.rating
+                    }
+                })
             }
         }
     }
