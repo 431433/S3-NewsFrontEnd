@@ -9,6 +9,6 @@
     "\\src\\router",
     "\\src\\views"
   ],
-  "SelectedNode": "\\vue.config.js",
+  "SelectedNode": "\\src\\views\\CovidView.vue",
   "PreviewInSolutionExplorer": false
 }

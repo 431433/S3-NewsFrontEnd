@@ -5,11 +5,11 @@
         <div>
             <div>
                 <b-list-group class="article-list">
-                    <!--<h3>Latest articles</h3>
+                    <h3>Latest articles</h3>
                     <hr />
-                    <b-list-group-item v-for="article in latestArticles" :href="article.url" class="flex-column align-items-start">
+                    <b-list-group-item v-for="article in latest" :href="article.url" :key="article.amount" class="flex-column align-items-start">
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">article.title</h5>
+                            <h5 class="mb-1">{{article.title}}</h5>
                         </div>
 
                         <p class="mb-1">
@@ -17,9 +17,25 @@
                         </p>
 
                         <small>{{article.sourceName}}</small>
-                    </b-list-group-item>-->
+                    </b-list-group-item>
                 </b-list-group>
-</div>
+
+                <b-list-group class="article-list">
+                    <h3>Popular articles</h3>
+                    <hr />
+                    <b-list-group-item v-for="article in popular" :href="article.url" :key="article.amount" class="flex-column align-items-start">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{article.title}}</h5>
+                        </div>
+
+                        <p class="mb-1">
+                            {{article.description}}
+                        </p>
+
+                        <small>{{article.sourceName}}</small>
+                    </b-list-group-item>
+                </b-list-group>
+            </div>
         </div>
 
         <div class="margin-mainView">
@@ -86,8 +102,9 @@
                 },
                 chartOptions: {
                     responsive: false
-                }
-
+                },
+                latest: null,
+                popular: null
             }
         },
         props: {
@@ -119,24 +136,22 @@
                 type: Object,
                 default: () => { }
             }
+        },
+        
+        async mounted() {
+            axios
+                .get('https://newsbackend.azurewebsites.net/Covid/GetCovidNewsLatest')
+                .then(response => {
+                    this.latest = response.data
+                    console.log(this.latest)
+                }),
+            axios
+                .get('https://newsbackend.azurewebsites.net/Covid/GetCovidNewsPopular')
+                .then(response => {
+                    this.popular = response.data
+                    console.log(this.popular)
+                });
         }
-        //},
-        //async mounted() {
-        //    this.loaded = false
-
-        //    try {
-        //        axios
-        //            .get('api string')
-        //            .then(response => {
-        //                //console.warn(response.data)
-        //                this.chartData = response.data
-        //            })
-
-        //        this.loaded = true
-        //    } catch (e) {
-        //        console.error(e)
-        //    }
-        //}
     };
 </script>
 
@@ -144,7 +159,9 @@
     .article-list {
         max-width: 20%;
         float: right;
-        margin-right: 100px;
+        margin-right: 60px;
+        max-height: 850px;
+        overflow: scroll;
     }
 
     .margin-mainView{
